@@ -10,6 +10,8 @@ package com.iudigital.taller_dao.model;
  */
 
 import java.sql.Date;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Funcionario {
     private String tipoIdentificacion;
@@ -26,6 +28,22 @@ public class Funcionario {
     private String tituloEstudio;
 
     public Funcionario() {
+    }
+    
+    public StringProperty tipoIdProperty () {
+        return new SimpleStringProperty(tipoIdentificacion);
+    }
+    
+    public StringProperty numeroIdProperty () {
+        return new SimpleStringProperty(numeroIdentificacion);
+    }
+    
+    public StringProperty nombreProperty () {
+        return new SimpleStringProperty(nombres);
+    }
+    
+    public StringProperty apellidoProperty () {
+        return new SimpleStringProperty(apellidos);
     }
 
     public String getTipoIdentificacion() {

@@ -54,7 +54,7 @@ public class FuncionarioDAO {
     }
 
     public List<Funcionario> obtenerTodos() throws SQLException {
-        String sql = "SELECT * FROM FUNCIONARIO";
+        String sql = "SELECT * FROM funcionario";
         List<Funcionario> funcionarios = new ArrayList<>();
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {

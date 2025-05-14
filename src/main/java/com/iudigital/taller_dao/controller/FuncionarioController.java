@@ -60,22 +60,35 @@ public class FuncionarioController {
     private TableColumn<Funcionario, String> nombresColumn;
     @FXML
     private TableColumn<Funcionario, String> apellidosColumn;
-
+    
+    private final FuncionarioDAO funcionariosDAO = new FuncionarioDAO();
+    
     private FuncionarioDAO funcionarioDAO;
     private ObservableList<Funcionario> funcionarios;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
         funcionarioDAO = new FuncionarioDAO();
         funcionarios = FXCollections.observableArrayList();
         estadoCivilComboBox.setItems(FXCollections.observableArrayList("Soltero", "Casado", "Viudo", "Divorciado", "Unión Libre"));
         sexoComboBox.setItems(FXCollections.observableArrayList("M", "F"));
 
         // Configura las columnas
-        tipoIdentificacionColumn.setCellValueFactory(new PropertyValueFactory<>("tipoIdentificacion"));
+        
+        /*tipoIdentificacionColumn.setCellValueFactory(new PropertyValueFactory<>("tipoIdentificacion"));
         numeroIdentificacionColumn.setCellValueFactory(new PropertyValueFactory<>("numeroIdentificacion"));
         nombresColumn.setCellValueFactory(new PropertyValueFactory<>("nombres"));
-        apellidosColumn.setCellValueFactory(new PropertyValueFactory<>("apellidos"));
+        apellidosColumn.setCellValueFactory(new PropertyValueFactory<>("apellidos"));*/
+        ObservableList<Funcionario> funcionariosList = FXCollections.observableArrayList(funcionariosDAO.obtenerTodos());
+        
+        numeroIdentificacionColumn.setCellValueFactory(Cell->Cell.getValue().numeroIdProperty());
+        tipoIdentificacionColumn.setCellValueFactory(Cell->Cell.getValue().tipoIdProperty());
+        nombresColumn.setCellValueFactory(Cell->Cell.getValue().nombreProperty());
+        apellidosColumn.setCellValueFactory(Cell->Cell.getValue().apellidoProperty());
+        
+        
+        funcionariosTableView.setItems(funcionariosList);
+        
 
         // Asigna la lista a la TableView
         funcionariosTableView.setItems(funcionarios);
