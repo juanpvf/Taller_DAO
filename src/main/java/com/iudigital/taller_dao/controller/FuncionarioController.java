@@ -74,11 +74,7 @@ public class FuncionarioController {
         sexoComboBox.setItems(FXCollections.observableArrayList("M", "F"));
 
         // Configura las columnas
-        
-        /*tipoIdentificacionColumn.setCellValueFactory(new PropertyValueFactory<>("tipoIdentificacion"));
-        numeroIdentificacionColumn.setCellValueFactory(new PropertyValueFactory<>("numeroIdentificacion"));
-        nombresColumn.setCellValueFactory(new PropertyValueFactory<>("nombres"));
-        apellidosColumn.setCellValueFactory(new PropertyValueFactory<>("apellidos"));*/
+
         ObservableList<Funcionario> funcionariosList = FXCollections.observableArrayList(funcionariosDAO.obtenerTodos());
         
         numeroIdentificacionColumn.setCellValueFactory(Cell->Cell.getValue().numeroIdProperty());
